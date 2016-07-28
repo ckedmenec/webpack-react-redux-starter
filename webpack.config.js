@@ -20,7 +20,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js', '.scss']
   },
   resolveLoader: {
     'fallback': path.join(__dirname, 'node_modules')
