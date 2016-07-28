@@ -4,12 +4,23 @@ import { AppContainer } from 'react-hot-loader';
 import configureStore from './store/configureStore';
 import Root from './containers/Root';
 
+import { syncHistoryWithStore } from 'react-router-redux';
+import { browserHistory } from 'react-router';
+import routes from './routes';
+
+import './styles/index';
+
 const store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState: (state) => state.router
+});
 
 render(
   <AppContainer>
     <Root
-      store={ store }
+      routes={routes}
+      store={store}
+      history={history}
     />
   </AppContainer>,
   document.getElementById('root')
@@ -21,7 +32,9 @@ if (module.hot) {
     render(
       <AppContainer>
         <RootContainer
-          store={ store }
+          routes={routes}
+          store={store}
+          history={history}
         />
       </AppContainer>,
       document.getElementById('root')
